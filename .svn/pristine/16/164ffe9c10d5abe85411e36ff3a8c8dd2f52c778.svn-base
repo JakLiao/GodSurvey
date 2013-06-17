@@ -1,0 +1,40 @@
+<%@ page language="java" import="java.util.*"
+	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户注册</title>
+</head>
+<body>
+	<form id="form1" name="form1" action="RegisterServlet" method="POST">
+		<table>
+			<tr>
+				<td align="right">用户名：</td>
+				<td><input type="text" name="username" /></td>
+			</tr>
+			<tr>
+				<td align="right">密码：</td>
+				<td><input type="password" name="pwd" /></td>
+			</tr>
+			<tr>
+				<td align="right">密码确认：</td>
+				<td><input type="password" name="pwd1" /></td>
+			</tr>
+			<tr>
+				<td align="right">性别：</td>
+				<td><input type="radio" name="sex" value="男" checked="checked" />
+					男 <input type="radio" name="sex" value="女" /> 女</td>
+			</tr>
+			<tr>
+				<td align="right">地址：</td>
+				<td><input type="text" name="address" /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input id="submit" name="submit"
+					type="submit" value="提交" /> <input type="reset" value="重置" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

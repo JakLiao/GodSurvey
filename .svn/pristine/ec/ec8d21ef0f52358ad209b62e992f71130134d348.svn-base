@@ -1,0 +1,61 @@
+<%@ page language="java" import="com.*, java.util.*"
+	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+		String username = "";
+		if (session.getAttribute("username") != null) {
+			username = session.getAttribute("username").toString();
+		} else {
+			//out.println("<script>window.alert('登录已超时!');window.history.go(-1);</script>");
+			// response.sendRedirect("login.jsp");
+		}
+	%>
+	<jsp:useBean id="user" class="com.LoginInfo" type="com.LoginInfo"
+		scope="session" />
+
+	<%
+		ArrayList<LoginInfo> list = user.findAll();
+		if (list == null || list.size() == 0) {
+	%>
+	不存在用户
+	<%
+		} else {
+	%>
+	<form action="temp.jsp" method="post">
+		<table align="center" border=1>
+			<tr>
+				<th>用户名</th>
+				<th>登录时间</th>
+				<th>注销时间</th>
+			</tr>
+			<%
+				for (int i = 0; i < list.size(); i++) {
+			%>
+			<tr>
+				<td><%=list.get(i).getUserName()%></td>
+				<td><%=list.get(i).getLoginTime()%></td>
+				<td><%=list.get(i).getLogoutTime()%></td>
+				<%-- <td><a href="do?action=del&id=<%=list.get(i).getUserid()%>">删除</a></td>
+			<td><a href="modifyPwd.jsp?id=<%=list.get(i).getUserid()%>">修改</a></td> --%>
+			</tr>
+			<%
+				}
+				}
+			%>
+			<tr>
+			<td colspan="3"><input name="exit" type="submit" value="用户注销" /></td>
+			</tr>
+		</table>
+	</form>
+	<br>
+	<!-- <a href="addUser.jsp">增加用户</a> -->
+	<br>
+
+</body>
+</html>

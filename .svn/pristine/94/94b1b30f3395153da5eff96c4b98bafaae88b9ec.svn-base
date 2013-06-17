@@ -1,0 +1,128 @@
+package servlet;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.Paper;
+import com.UserInfo;
+import com.dao.PaperDao;
+import com.dao.mysqlimpl.PaperDaoImpl;
+
+/**
+ * Servlet implementation class AddPaper
+ */
+@WebServlet("/AddPaper")
+public class AddPaper extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public AddPaper() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see Servlet#destroy()
+	 */
+	public void destroy() {
+		// TODO Auto-generated method stub
+		this.destroy();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		this.doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PaperDao paperDao = new PaperDaoImpl();
+
+		Paper paper = new Paper();
+
+		HttpSession session = request.getSession();
+
+		UserInfo user = (UserInfo) session.getAttribute("userInfo");
+		int userId = user.getUserid();
+		System.out.println("addpaper"+userId);
+
+		paper.setUserId(userId);
+
+		String paperTitle0 = request.getParameter("paperTitle");
+		String paperTitle = new String(paperTitle0.getBytes("ISO-8859-1"),
+				"utf-8");
+		paper.setPaperTitle(paperTitle);
+
+		String paperTypeString = request.getParameter("paperType");
+		int paperType = Integer.parseInt(paperTypeString);
+		paper.setPaperType(paperType);
+
+		String paperSummary0 = request.getParameter("paperSummary");
+		String paperSummary = new String(paperSummary0.getBytes("ISO-8859-1"),
+				"utf-8");
+		paper.setPaperSummary(paperSummary);
+
+		String paperBg = request.getParameter("paperBg");
+		paper.setPaperBg(paperBg);
+
+		// 发布日期
+		Date date = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				"yyyy-MM-dd HH:mm:ss");
+		String paperStartDate = simpleDateFormat.format(date);
+		paper.setPaperStartDate(paperStartDate);
+
+		// 截止日期的设置
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		calendar.add(Calendar.DATE, +30);
+		date = calendar.getTime();
+		String dataString = simpleDateFormat.format(date);
+		paper.setPaperEndDate(dataString);
+
+		int paperStatus = 0;// 未发布
+		paper.setPaperStatus(paperStatus);
+
+		// 回答次数
+		int paperCount = 0;
+		paper.setPaperCount(paperCount);
+
+		paperDao.addPapers(paper);
+
+		int paperId = paperDao.findPaperIdByuserIdAndDate(userId,
+				paperStartDate);
+
+		session.setAttribute("paperId", new Integer(paperId));
+		response.sendRedirect("addChoiceQuestion.jsp");
+	}
+
+}

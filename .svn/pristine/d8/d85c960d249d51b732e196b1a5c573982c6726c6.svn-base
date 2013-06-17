@@ -1,0 +1,39 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : Mysql56
+Source Server Version : 50611
+Source Host           : localhost:3306
+Source Database       : jdbc
+
+Target Server Type    : MYSQL
+Target Server Version : 50611
+File Encoding         : 65001
+
+Date: 2013-06-05 12:33:32
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `papers`
+-- ----------------------------
+DROP TABLE IF EXISTS `papers`;
+CREATE TABLE `papers` (
+  `paperId` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) DEFAULT NULL,
+  `paperTitle` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `paperSummary` varchar(300) CHARACTER SET utf8 DEFAULT NULL,
+  `paperStartDate` datetime DEFAULT NULL,
+  `paperEndDate` datetime DEFAULT NULL,
+  `paperBg` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
+  `paperType` int(11) DEFAULT NULL,
+  `paperStatus` int(11) DEFAULT NULL,
+  `paperCount` int(11) DEFAULT NULL,
+  PRIMARY KEY (`paperId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records of papers
+-- ----------------------------
+INSERT INTO `papers` VALUES ('1', '1', 'Test paper', 'This is a test paper! Enjoy it!', '2013-05-01 12:00:00', '2013-05-10 12:00:00', 'default_bg.png', '1', '1', '99');

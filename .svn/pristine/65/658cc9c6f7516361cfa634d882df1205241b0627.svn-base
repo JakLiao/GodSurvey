@@ -1,0 +1,35 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : Mysql56
+Source Server Version : 50611
+Source Host           : localhost:3306
+Source Database       : jdbc
+
+Target Server Type    : MYSQL
+Target Server Version : 50611
+File Encoding         : 65001
+
+Date: 2013-06-05 12:33:49
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `questions`
+-- ----------------------------
+DROP TABLE IF EXISTS `questions`;
+CREATE TABLE `questions` (
+  `qstId` int(11) NOT NULL AUTO_INCREMENT,
+  `paperId` int(11) DEFAULT NULL,
+  `qstType` int(11) DEFAULT NULL,
+  `qstTitle` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `qstOption` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
+  `qstAnswer` varchar(1000) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`qstId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records of questions
+-- ----------------------------
+INSERT INTO `questions` VALUES ('1', '1', '1', 'First Question', 'A:廖浩杰#B:梁康华 #C:林守煌 #D:林俊杰', '4&2&3&2');

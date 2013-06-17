@@ -1,0 +1,40 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : Mysql56
+Source Server Version : 50611
+Source Host           : localhost:3306
+Source Database       : jdbc
+
+Target Server Type    : MYSQL
+Target Server Version : 50611
+File Encoding         : 65001
+
+Date: 2013-05-30 22:33:41
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `userinfo`
+-- ----------------------------
+DROP TABLE IF EXISTS `userinfo`;
+CREATE TABLE `userinfo` (
+  `userId` int(20) NOT NULL AUTO_INCREMENT,
+  `userName` varchar(20) NOT NULL DEFAULT '',
+  `password` varchar(20) NOT NULL DEFAULT '123456',
+  `gender` varchar(4) DEFAULT NULL,
+  `address` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records of userinfo
+-- ----------------------------
+INSERT INTO `userinfo` VALUES ('1', 'Jak', '123456', '男', 'earth');
+INSERT INTO `userinfo` VALUES ('2', 'Miku', '123456', '男', 'asd');
+INSERT INTO `userinfo` VALUES ('4', 'jsp', '123456', '男', 'asd');
+INSERT INTO `userinfo` VALUES ('5', 'dad', '123456', '男', 'ads');
+INSERT INTO `userinfo` VALUES ('6', 'mom', '123456', '男', 'ddd');
+INSERT INTO `userinfo` VALUES ('7', 'uncle', '123456', '男', 'sds');
+INSERT INTO `userinfo` VALUES ('8', 'JJ', '123456', '男', 'asd');
